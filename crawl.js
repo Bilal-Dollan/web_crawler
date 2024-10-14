@@ -2,10 +2,14 @@ const {JSDOM} = require('jsdom');
 
 
 async function crawlPage (baseUrl, currentUrl, pages){
+    
     const baseUrlObj = new URL(baseUrl)
     const currentUrlObj = new URL(currentUrl)
     if (baseUrlObj.hostname != currentUrlObj.hostname){
         return pages
+    }
+    if (baseUrlObj.href.slice(-1) === '/'){
+        baseUrl = baseUrlObj.href.slice(0, -1)
     }
 
     const normalizedUrl = normalizeURL(currentUrl)
