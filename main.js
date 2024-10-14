@@ -1,8 +1,8 @@
 const {crawlPage} = require('./crawl.js')
 
-function main(){
+async function main(){
     if (process.argv.length < 3){
-        console.log('Enter a valid Url')
+        console.log('Enter a Url')
         process.exit(1)
     } 
     if (process.argv.length > 3){
@@ -10,9 +10,11 @@ function main(){
         process.exit(1)
     }
     try{
-        const urlObj = new URL(process.argv[2])
-        const baseUrl = urlObj.href
-        crawlPage(baseUrl)
+        const baseUrl = new URL(process.argv[2])
+        const pages = await crawlPage(baseUrl, baseUrl, {})
+        for (const page of Object.entries(pages)){
+            console.log(page)
+        }
     } catch (err){
         console.log('Enter a valid URL')
     }

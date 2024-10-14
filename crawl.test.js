@@ -42,6 +42,6 @@ test('readFromHtml', ()=>{
     `
     input2 = 'https://google.com'
     actual = readUrlFromHtml(input1, input2)
-    expected = ["https://google.com/path/", "https://google.com2/"]
+    expected = ["https://google.com/path", "https://google.com2"]
     expect(actual).toEqual(expected)
 })
